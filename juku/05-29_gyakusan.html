@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>クライアントワークは「逆算」で決まる</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#54606F; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --soft:#EAF7FA;
+    --grad:linear-gradient(120deg,#14B8A6 0%,#0EA5E9 52%,#6366F1 100%);
+    --grad-soft:linear-gradient(120deg,rgba(20,184,166,.14),rgba(99,102,241,.14));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:120px 156px}
+  .hi{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .blob{position:absolute;border-radius:50%;z-index:0}
+  .b1{width:760px;height:760px;right:-200px;top:-220px;
+      background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.20),rgba(99,102,241,.10) 45%,rgba(255,255,255,0) 70%)}
+  .b2{width:620px;height:620px;left:-200px;bottom:-220px;
+      background:radial-gradient(circle at 60% 40%,rgba(20,184,166,.18),rgba(14,165,233,.08) 50%,rgba(255,255,255,0) 72%)}
+  .page > *{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--grad)}
+  .title{font-weight:900;line-height:1.18;font-size:84px;letter-spacing:.01em;margin-top:28px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em;z-index:1}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:700;font-size:22px;color:var(--faint);letter-spacing:.06em;z-index:1}
+  .lead{margin-top:38px;font-size:34px;color:var(--sub);font-weight:500;line-height:1.62;max-width:1540px}
+  .lead b{color:var(--ink);font-weight:700}
+
+  .cover .kick{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:26px;letter-spacing:.12em;color:var(--faint);margin-bottom:36px}
+  .cover .bar{width:150px;height:13px;border-radius:13px;background:var(--grad);margin-bottom:50px}
+  .cover h1{font-size:108px;line-height:1.14;font-weight:900;letter-spacing:.01em}
+  .cover .sub{margin-top:42px;font-size:44px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:92px;font-size:28px;font-weight:700;z-index:1}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+  .cover .date{position:absolute;right:156px;bottom:96px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:24px;color:var(--faint);letter-spacing:.04em;z-index:1}
+
+  .points{margin-top:52px;display:flex;flex-direction:column;gap:36px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:70px;border-radius:9px;background:var(--grad)}
+  .pt h3{font-size:46px;font-weight:900;line-height:1.25}
+  .pt p{font-size:29px;color:var(--sub);font-weight:500;margin-top:10px;line-height:1.5}
+
+  .cards{margin-top:56px;display:flex;gap:40px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:50px 44px 46px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--grad)}
+  .card .num{font-family:"Inter";font-weight:800;font-size:70px;line-height:1;margin-bottom:18px;
+             background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .card .ctag{font-family:"Inter";font-weight:700;font-size:20px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-size:42px;font-weight:900;line-height:1.22}
+  .card p{margin-top:18px;font-size:28px;color:var(--sub);font-weight:500;line-height:1.5}
+
+  .chips{margin-top:50px;display:flex;flex-wrap:wrap;gap:22px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:22px 38px;font-size:33px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--grad);flex:none}
+
+  .step{margin-top:48px;display:flex;align-items:center;gap:32px;background:var(--grad-soft);border-radius:30px;padding:40px 52px}
+  .step .lab{font-family:"Inter";font-weight:800;letter-spacing:.1em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:37px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="kick">映gent Ro.man ｜ 映像クリエイター塾</div>
+  <div class="bar"></div>
+  <h1>クライアントワークは<br>「<span class="hi">逆算</span>」で決まる。</h1>
+  <div class="sub">撮ってから考えるのを、<b>やめる</b>。</div>
+  <div class="by"><span>講師</span>中川 典彌</div>
+  <div class="date">塾コンテンツ ・ 企画設計</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="導入">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>Introduction ・ 導入</div>
+  <h2 class="title">なぜ、あの人の映像だけ<br><span class="hi">刺さる</span>のか。</h2>
+  <p class="lead">同じ依頼を受けたはず。Bロールを盛って、笑顔を入れて、楽しそうにまとめる。技術的には、悪くない。でも、なぜか"意味"が宿らない。観た人の心が動かないし、次の依頼にもつながらない。昔の僕も、多くのクリエイターも、ここでつまずきます。<b>選ばれ続ける人は、何が違うのか</b>。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">02 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="結論">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>結論 ・ The Answer</div>
+  <h2 class="title">映像の価値は、<br>「<span class="hi">逆算</span>」で決まる。</h2>
+  <p class="lead">答えは<b>編集からの逆算</b>です。着地点を、いちばん最初に決める。この作品で何を果たせたら成功なのか——目的を、撮るより先に固める。そして、その目的とクライアントの認識に、<b>一ミリもズレがない</b>状態にしておく。「撮ってから考える」では、絶対にたどり着けない場所があります。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">03 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="全体像">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>5つのステップ ・ Overview</div>
+  <h2 class="title">着地点さえ定まれば、<br>撮るものは<span class="hi">見えてくる</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>① 着地点を最初に決める</div>
+    <div class="chip"><span class="dot"></span>② 言われない課題を見つける</div>
+    <div class="chip"><span class="dot"></span>③ 目的がレシピを揃える</div>
+    <div class="chip"><span class="dot"></span>④ 言葉のピースを拾う</div>
+    <div class="chip"><span class="dot"></span>⑤ 当事者ほど評価が上がる</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">04 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="① 着地点">
+  <div class="eyebrow"><span class="ebar"></span>01 ・ Endpoint</div>
+  <h2 class="title">着地点を、<br>いちばん最初に決める</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>即興の撮影でも、共通して大事</h3><p>ずっと、編集点からの逆算。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>成功の定義が曖昧だと</h3><p>撮れ高はあっても、芯のない映像に。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>クライアントと、一ミリもズラさない</h3><p>納品後の評価が、まるで変わる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">05 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="② 売りたくなる">
+  <div class="eyebrow"><span class="ebar"></span>02 ・ Reframe</div>
+  <h2 class="title">「買いたくなる」を<br>「<span class="hi">売りたくなる</span>」に変えた日</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>バディカ久留米、3本目</h3><p>同じ型でなく、別のものを作ろう。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>会社の本質は、"中間"を担うこと</h3><p>ヒントは「売り手の気持ち」にある。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>言われていない課題を、自分で設定</h3><p>「めっちゃいいね」。了承を得た。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">06 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="③ レシピ">
+  <div class="eyebrow"><span class="ebar"></span>03 ・ Recipe</div>
+  <h2 class="title">目的が決まれば、<br>レシピは<span class="hi">勝手に揃う</span></h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>手放す寂しさ。磨き上げる姿</h3><p>撮るべきシーンが、次々に浮かぶ。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>でも、考えてやる人はいない</h3><p>「おしゃれに撮って」では、出てこない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>思い出を引き出すインタビュー</h3><p>その瞬間だけを、切り抜いて組み立てる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">07 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="④ ピース">
+  <div class="eyebrow"><span class="ebar"></span>04 ・ Interview</div>
+  <h2 class="title">インタビューは、<br>"<span class="hi">ピース</span>"を拾う作業</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>ふとした一言に、耳を澄ます</h3><p>「最後に一枚、撮っていいですか」。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>——これだ、と思った</h3><p>車の前でピース。別れ際の一枚に見える。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>頭の中で、先に組み立てておく</h3><p>この言葉は、この映像に変換できる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">08 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="⑤ ドキュメンタリー">
+  <div class="eyebrow"><span class="ebar"></span>05 ・ Documentary</div>
+  <h2 class="title">ドキュメンタリーは、<br>当事者ほど<span class="hi">評価が上がる</span></h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>相手が、期待していないから</h3><p>リアルをそのまま出すだけで、刺さる。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>一番唸るのは、その場にいた人</h3><p>「あれが、こうなるの?」と。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>視聴者の感動と、当事者の驚き</h3><p>その両方を、同時に満たせる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">09 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="まとめ">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>まとめ ・ Wrap Up</div>
+  <h2 class="title">AI時代に残るのは、<br><span class="hi">逆算</span>できる人だ。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>価値は逆算で決まる</div>
+    <div class="chip"><span class="dot"></span>課題は自分で決めて了承を得る</div>
+    <div class="chip"><span class="dot"></span>目的が、撮るものを揃える</div>
+    <div class="chip"><span class="dot"></span>人を動かすのはドキュメンタリー</div>
+  </div>
+  <div class="step"><div class="lab">今日の一歩</div><div class="stx">次の現場で、撮る前に一行。「この映像で、何を果たせたら成功か」。できれば、クライアントにひと言伝えてみる。</div></div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">10 / 10</div>
+</section>
+
+</body>
+</html>
