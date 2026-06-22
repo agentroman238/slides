@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>その数分で、会場の温度を変える</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#54606F; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --soft:#EAF7FA;
+    --grad:linear-gradient(120deg,#14B8A6 0%,#0EA5E9 52%,#6366F1 100%);
+    --grad-soft:linear-gradient(120deg,rgba(20,184,166,.14),rgba(99,102,241,.14));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:120px 156px}
+  .hi{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .blob{position:absolute;border-radius:50%;z-index:0}
+  .b1{width:760px;height:760px;right:-200px;top:-220px;
+      background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.20),rgba(99,102,241,.10) 45%,rgba(255,255,255,0) 70%)}
+  .b2{width:620px;height:620px;left:-200px;bottom:-220px;
+      background:radial-gradient(circle at 60% 40%,rgba(20,184,166,.18),rgba(14,165,233,.08) 50%,rgba(255,255,255,0) 72%)}
+  .page > *{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--grad)}
+  .title{font-weight:900;line-height:1.18;font-size:84px;letter-spacing:.01em;margin-top:28px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em;z-index:1}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:700;font-size:22px;color:var(--faint);letter-spacing:.06em;z-index:1}
+  .lead{margin-top:38px;font-size:34px;color:var(--sub);font-weight:500;line-height:1.62;max-width:1540px}
+  .lead b{color:var(--ink);font-weight:700}
+
+  .cover .kick{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:26px;letter-spacing:.12em;color:var(--faint);margin-bottom:36px}
+  .cover .bar{width:150px;height:13px;border-radius:13px;background:var(--grad);margin-bottom:50px}
+  .cover h1{font-size:108px;line-height:1.14;font-weight:900;letter-spacing:.01em}
+  .cover .sub{margin-top:42px;font-size:44px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:92px;font-size:28px;font-weight:700;z-index:1}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+  .cover .date{position:absolute;right:156px;bottom:96px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:24px;color:var(--faint);letter-spacing:.04em;z-index:1}
+
+  .points{margin-top:52px;display:flex;flex-direction:column;gap:36px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:70px;border-radius:9px;background:var(--grad)}
+  .pt h3{font-size:46px;font-weight:900;line-height:1.25}
+  .pt p{font-size:29px;color:var(--sub);font-weight:500;margin-top:10px;line-height:1.5}
+
+  .cards{margin-top:56px;display:flex;gap:40px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:50px 44px 46px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--grad)}
+  .card .num{font-family:"Inter";font-weight:800;font-size:70px;line-height:1;margin-bottom:18px;
+             background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .card .ctag{font-family:"Inter";font-weight:700;font-size:20px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-size:42px;font-weight:900;line-height:1.22}
+  .card p{margin-top:18px;font-size:28px;color:var(--sub);font-weight:500;line-height:1.5}
+
+  .chips{margin-top:50px;display:flex;flex-wrap:wrap;gap:22px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:22px 38px;font-size:33px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--grad);flex:none}
+
+  .step{margin-top:48px;display:flex;align-items:center;gap:32px;background:var(--grad-soft);border-radius:30px;padding:40px 52px}
+  .step .lab{font-family:"Inter";font-weight:800;letter-spacing:.1em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:37px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="kick">映gent Ro.man ｜ 映像クリエイター塾</div>
+  <div class="bar"></div>
+  <h1>その数分で、<br><span class="hi">会場の温度</span>を変える。</h1>
+  <div class="sub">オープニングは、<b>説明</b>じゃない。</div>
+  <div class="by"><span>講師</span>中川 典彌</div>
+  <div class="date">塾コンテンツ ・ 目的設計</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="導入">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>Introduction ・ 導入</div>
+  <h2 class="title">「<span class="hi">とりあえず</span>作る」前に、<br>一回止まる。</h2>
+  <p class="lead">「社員総会があるので、オープニングムービーを作ってください」。よくある依頼です。多くのクリエイターは、ここでいきなり<b>カットや音楽</b>を考え始める。でもその前に——<b>何のために作るのか</b>を、先に決めましたか。資料は立派なのに、肝心の"目的"が抜けている現場は、本当に多いんです。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">02 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="結論">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>結論 ・ The Answer</div>
+  <h2 class="title">説明する数分じゃない。<br><span class="hi">温度を変える</span>数分だ。</h2>
+  <p class="lead">オープニングムービーは、会社を説明する時間ではありません。<b>その場にいる人の"気持ちの角度"を変える</b>時間です。歩み・方針・表彰・交流——その日に起こる全部を、参加者がどんな心の向きで受け取るか。それを冒頭の数分で整えるのが、オープニングの仕事。ここが決まらないまま画づくりに入ると、どれだけ綺麗でも刺さりません。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">03 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="全体像">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>5つの視点 ・ Overview</div>
+  <h2 class="title">目的が決まれば、<br>映像は<span class="hi">勝手に浮かぶ</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>① 冒頭でトーンが決まる</div>
+    <div class="chip"><span class="dot"></span>② 目的が映像を呼ぶ</div>
+    <div class="chip"><span class="dot"></span>③ 観客を主役に</div>
+    <div class="chip"><span class="dot"></span>④ 引き算する勇気</div>
+    <div class="chip"><span class="dot"></span>⑤ 撮り手で濃度が変わる</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">04 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="① トーン">
+  <div class="eyebrow"><span class="ebar"></span>01 ・ Tone</div>
+  <h2 class="title">冒頭の数分で、<br>その日の<span class="hi">過ごし方</span>が決まる</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>結婚式のムービーと、同じ</h3><p>一本で「今日の過ごし方」を提案できる。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>観た瞬間、構えが決まる</h3><p>「あ、今日はこっち系だ」と無意識に。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>だから、冒頭で狙う</h3><p>背筋が伸び、全員が前のめりになる温度を。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">05 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="② 目的">
+  <div class="eyebrow"><span class="ebar"></span>02 ・ Purpose</div>
+  <h2 class="title">目的が決まれば、<br>映像は<span class="hi">浮かんでくる</span></h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>大事なのは、機材でも技術でもない</h3><p>一番は「目的」。これが、先。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>今回の目的は、シンプル</h3><p>参加者を、観客から"当事者"へ。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>Why → How → What の順</h3><p>絶対に、逆にしない。精度が何段も上がる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">06 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="③ 主役">
+  <div class="eyebrow"><span class="ebar"></span>03 ・ Protagonist</div>
+  <h2 class="title">参加者を、観客から<br>「<span class="hi">主役</span>」に変える</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>いい理念ほど、日常に埋もれる</h3><p>言葉だけじゃ、なかなか伝わらない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>だから、映像の出番</h3><p>「自分の今日は、会社の未来とつながる」。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>この会社に、脇役は一人もいない</h3><p>スクリーンに映る、その一瞬で伝わる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">07 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="④ 引き算">
+  <div class="eyebrow"><span class="ebar"></span>04 ・ Subtraction</div>
+  <h2 class="title">"<span class="hi">引き算</span>"する勇気を、持つ</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>足し算は、温度を下げる</h3><p>「あれも、これも」で説明的になる。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>今回、日常業務カットは外した</h3><p>目的は"緊張感"と"かっこよさ"だから。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>何を入れるかより、何を入れないか</h3><p>目的があれば、判断は一気にクリアになる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">08 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="⑤ 濃度">
+  <div class="eyebrow"><span class="ebar"></span>05 ・ Density</div>
+  <h2 class="title">同じ素材でも、<br>撮り手で"<span class="hi">濃度</span>"が変わる</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>社長が撮った映像は、中では感動</h3><p>でも外には、ほとんど響かない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>いい画・音・音楽・構成で組み直す</h3><p>メッセージの濃度が、まるで変わる。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>だから、僕たちが関わる意味がある</h3><p>かっこいい人を、ちゃんとかっこよく。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">09 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="まとめ">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>まとめ ・ Wrap Up</div>
+  <h2 class="title">手を動かす前に、<br>一回<span class="hi">止まる</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>オープニングは説明じゃない</div>
+    <div class="chip"><span class="dot"></span>目的が決まれば映像は浮かぶ</div>
+    <div class="chip"><span class="dot"></span>観客を主役に。脇役はいない</div>
+    <div class="chip"><span class="dot"></span>要らないものは、引き算する</div>
+  </div>
+  <div class="step"><div class="lab">今日の一歩</div><div class="stx">次に映像を頼まれたら、撮る前にノートへ一行。「観た人に、観終わった後どうなっていてほしいか」。</div></div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">10 / 10</div>
+</section>
+
+</body>
+</html>
