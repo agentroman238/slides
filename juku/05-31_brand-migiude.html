@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>映像クリエイターは、ブランドをつくる経営の右腕だ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#54606F; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --soft:#EAF7FA;
+    --grad:linear-gradient(120deg,#14B8A6 0%,#0EA5E9 52%,#6366F1 100%);
+    --grad-soft:linear-gradient(120deg,rgba(20,184,166,.14),rgba(99,102,241,.14));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:120px 156px}
+  .hi{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .blob{position:absolute;border-radius:50%;z-index:0}
+  .b1{width:760px;height:760px;right:-200px;top:-220px;
+      background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.20),rgba(99,102,241,.10) 45%,rgba(255,255,255,0) 70%)}
+  .b2{width:620px;height:620px;left:-200px;bottom:-220px;
+      background:radial-gradient(circle at 60% 40%,rgba(20,184,166,.18),rgba(14,165,233,.08) 50%,rgba(255,255,255,0) 72%)}
+  .page > *{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--grad)}
+  .title{font-weight:900;line-height:1.18;font-size:84px;letter-spacing:.01em;margin-top:28px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em;z-index:1}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:700;font-size:22px;color:var(--faint);letter-spacing:.06em;z-index:1}
+  .lead{margin-top:38px;font-size:34px;color:var(--sub);font-weight:500;line-height:1.62;max-width:1540px}
+  .lead b{color:var(--ink);font-weight:700}
+
+  .cover .kick{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:26px;letter-spacing:.12em;color:var(--faint);margin-bottom:36px}
+  .cover .bar{width:150px;height:13px;border-radius:13px;background:var(--grad);margin-bottom:50px}
+  .cover h1{font-size:104px;line-height:1.14;font-weight:900;letter-spacing:.01em}
+  .cover .sub{margin-top:42px;font-size:44px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:92px;font-size:28px;font-weight:700;z-index:1}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+  .cover .date{position:absolute;right:156px;bottom:96px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:24px;color:var(--faint);letter-spacing:.04em;z-index:1}
+
+  .points{margin-top:52px;display:flex;flex-direction:column;gap:36px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:70px;border-radius:9px;background:var(--grad)}
+  .pt h3{font-size:46px;font-weight:900;line-height:1.25}
+  .pt p{font-size:29px;color:var(--sub);font-weight:500;margin-top:10px;line-height:1.5}
+
+  .cards{margin-top:56px;display:flex;gap:40px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:50px 44px 46px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--grad)}
+  .card .num{font-family:"Inter";font-weight:800;font-size:70px;line-height:1;margin-bottom:18px;
+             background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .card .ctag{font-family:"Inter";font-weight:700;font-size:20px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-size:42px;font-weight:900;line-height:1.22}
+  .card p{margin-top:18px;font-size:28px;color:var(--sub);font-weight:500;line-height:1.5}
+
+  .chips{margin-top:50px;display:flex;flex-wrap:wrap;gap:22px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:22px 38px;font-size:33px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--grad);flex:none}
+
+  .step{margin-top:48px;display:flex;align-items:center;gap:32px;background:var(--grad-soft);border-radius:30px;padding:40px 52px}
+  .step .lab{font-family:"Inter";font-weight:800;letter-spacing:.1em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:37px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="kick">映gent Ro.man ｜ 映像クリエイター塾</div>
+  <div class="bar"></div>
+  <h1>映像クリエイターは、<br><span class="hi">経営の右腕</span>だ。</h1>
+  <div class="sub">記録係で、<b>終わるな</b>。</div>
+  <div class="by"><span>講師</span>中川 典彌</div>
+  <div class="date">塾コンテンツ ・ 事業戦略</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="導入">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>Introduction ・ 導入</div>
+  <h2 class="title">「自分は、ただの<br><span class="hi">記録係</span>なんじゃないか」。</h2>
+  <p class="lead">撮影も編集も、できるようになってきた。頼まれたものを、きれいに撮って、納める。それ自体は素晴らしい。でも、もしそこで仕事が止まっているなら、本当にもったいない。僕は、映像クリエイターは<b>会社を一人で変えられる存在</b>だと本気で思っています。今日は、その「立てる場所」の話を。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">02 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="結論">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>結論 ・ The Answer</div>
+  <h2 class="title">広報じゃない。<br>経営者の「<span class="hi">右腕</span>」だ。</h2>
+  <p class="lead">映像クリエイターは、ただ動画を作って配信する「広報」ではありません。<b>経営の上流から関わり、その会社のブランドを形にして世に出す「経営者の右腕」</b>です。そのために、絶対に分けて理解しておくべき3つの言葉があります。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">03 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="3つの言葉">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>順番が、すべての土台 ・ The Order</div>
+  <h2 class="title"><span class="hi">ブランド</span> → マーケ → プロモ</h2>
+  <div class="cards">
+    <div class="card"><div class="cbar"></div><div class="num">01</div><div class="ctag">Brand</div>
+      <h3>ブランド</h3><p>核＝「あなたでなければならない理由」。にじみ出るもの。</p></div>
+    <div class="card"><div class="cbar"></div><div class="num">02</div><div class="ctag">Marketing</div>
+      <h3>マーケティング</h3><p>その核を、誰に・どう届けるか設計する。</p></div>
+    <div class="card"><div class="cbar"></div><div class="num">03</div><div class="ctag">Promotion</div>
+      <h3>プロモーション</h3><p>設計の上で、世の中に知らせる。</p></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">04 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="① ブランド">
+  <div class="eyebrow"><span class="ebar"></span>01 ・ Brand</div>
+  <h2 class="title">ブランドとは<br>「<span class="hi">自分でなければ</span>ならない理由」</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>「顧客との約束」の、もう一歩先</h3><p>あなたでなければならない理由。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>作り物じゃない。にじみ出るもの</h3><p>歴史・実績・評価・その人ならではの空気。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>勝手に生まれてくるもの</h3><p>だから、核としてすでにそこにある。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">05 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="② 順番">
+  <div class="eyebrow"><span class="ebar"></span>02 ・ The Order</div>
+  <h2 class="title">順番を間違えると、<br>すべて<span class="hi">空回り</span>する</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>よくある失敗</h3><p>ブランドがないまま、プロモだけしている。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>動画一本で、ブランドは生まれない</h3><p>プロモは「知ってもらうきっかけ」にすぎない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>選ばれる理由は、核まで遡る</h3><p>「ブランドムービー」と呼ばれ始めた理由。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">06 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="③ 奥">
+  <div class="eyebrow"><span class="ebar"></span>03 ・ The Depth</div>
+  <h2 class="title">人は、知った後に<br>「<span class="hi">奥</span>」を見に行く</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>知ってもらえたら、奥を覗かれる</h3><p>理念は? 実績は? 社長の言葉は?</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>そこで初めて「頼みたい」が生まれる</h3><p>にじみ出る何かが、あるかどうか。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>法人かフリーかで反応が変わるのも同じ</h3><p>ブランド＝覚悟と積み重ねの、にじみ。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">07 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="④ 幹部級">
+  <div class="eyebrow"><span class="ebar"></span>04 ・ The Core</div>
+  <h2 class="title">だから、<br>「<span class="hi">幹部級</span>」になれる</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>一本で、人の心を動かす</h3><p>時に、事業の方向まで変えてしまう。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>編集・配信できる人は「広報」</h3><p>上流の"構造"から入れる人が、右腕。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>一企業に一人、映像クリエイターを</h3><p>それくらいの仕事なんです。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">08 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="⑤ 学ぶ">
+  <div class="eyebrow"><span class="ebar"></span>05 ・ Learn</div>
+  <h2 class="title">そのために、<span class="hi">学ぶ</span>。</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>学ぶのは、小手先の編集テクじゃない</h3><p>ブランド・マーケ・デザインとは何か。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>デザイン＝「全体を設計する」こと</h3><p>グラフィックだけの話じゃない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>だから、こう提案できる</h3><p>「あなたのブランドはこれだから、こう届けよう」。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">09 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="まとめ">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>まとめ ・ Wrap Up</div>
+  <h2 class="title">企画の時点で、<span class="hi">勝つ</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>ブランド＝あなたでなければならない理由</div>
+    <div class="chip"><span class="dot"></span>順番はブランド→マーケ→プロモ</div>
+    <div class="chip"><span class="dot"></span>選ばれる理由は、ブランド</div>
+    <div class="chip"><span class="dot"></span>記録係でなく、経営の右腕</div>
+  </div>
+  <div class="step"><div class="lab">今日の一歩</div><div class="stx">次の打ち合わせで、カメラの話の前に一つ。「御社が一番伝えたい"らしさ"って、何ですか?」。</div></div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">10 / 10</div>
+</section>
+
+</body>
+</html>
