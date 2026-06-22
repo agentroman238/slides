@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>EMIAS 社員総会 オープニングムービー 企画提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#54606F; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --soft:#EAF7FA;
+    --g1:#14B8A6; --g2:#0EA5E9; --g3:#6366F1;
+    --grad:linear-gradient(120deg,#14B8A6 0%,#0EA5E9 52%,#6366F1 100%);
+    --grad-soft:linear-gradient(120deg,rgba(20,184,166,.14),rgba(99,102,241,.14));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:120px 156px}
+
+  /* gradient accents */
+  .hi{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .blob{position:absolute;border-radius:50%;z-index:0}
+  .b1{width:760px;height:760px;right:-200px;top:-220px;
+      background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.20),rgba(99,102,241,.10) 45%,rgba(255,255,255,0) 70%)}
+  .b2{width:620px;height:620px;left:-200px;bottom:-220px;
+      background:radial-gradient(circle at 60% 40%,rgba(20,184,166,.18),rgba(14,165,233,.08) 50%,rgba(255,255,255,0) 72%)}
+  .page > *{position:relative;z-index:1}
+
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:700;font-size:24px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--grad)}
+  .title{font-weight:900;line-height:1.18;font-size:88px;letter-spacing:.01em;margin-top:30px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em;z-index:1}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:700;font-size:22px;color:var(--faint);letter-spacing:.06em;z-index:1}
+
+  .lead{margin-top:42px;font-size:35px;color:var(--sub);font-weight:500;line-height:1.62;max-width:1480px}
+  .lead b{color:var(--ink);font-weight:700}
+
+  /* cover */
+  .cover .kick{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:26px;letter-spacing:.14em;color:var(--faint);margin-bottom:38px}
+  .cover .bar{width:150px;height:13px;border-radius:13px;background:var(--grad);margin-bottom:52px}
+  .cover h1{font-size:120px;line-height:1.14;font-weight:900}
+  .cover .sub{margin-top:46px;font-size:42px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:92px;font-size:28px;font-weight:700;z-index:1}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+  .cover .date{position:absolute;right:156px;bottom:96px;font-family:"Inter";font-weight:700;font-size:24px;color:var(--faint);letter-spacing:.08em;z-index:1}
+
+  /* points */
+  .points{margin-top:58px;display:flex;flex-direction:column;gap:40px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:74px;border-radius:9px;background:var(--grad)}
+  .pt h3{font-size:48px;font-weight:900;line-height:1.25}
+  .pt p{font-size:30px;color:var(--sub);font-weight:500;margin-top:12px;line-height:1.5}
+
+  /* cards */
+  .cards{margin-top:60px;display:flex;gap:42px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:54px 50px 50px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--grad)}
+  .card .num{font-family:"Inter";font-weight:800;font-size:74px;line-height:1;margin-bottom:20px;
+             background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .card .ctag{font-family:"Inter";font-weight:700;font-size:21px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-size:44px;font-weight:900;line-height:1.22}
+  .card p{margin-top:18px;font-size:29px;color:var(--sub);font-weight:500;line-height:1.5}
+
+  /* chips */
+  .chips{margin-top:56px;display:flex;flex-wrap:wrap;gap:24px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:24px 40px;font-size:34px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--grad)}
+
+  /* timeline */
+  .tl{margin-top:50px;display:flex;flex-direction:column;gap:26px}
+  .tlrow{display:flex;align-items:center;gap:34px}
+  .tldate{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:30px;min-width:236px;
+          background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .tldot{width:20px;height:20px;border-radius:50%;background:var(--grad);flex:none}
+  .tltext{font-size:35px;font-weight:700;line-height:1.35}
+  .tltext.big{font-size:40px;font-weight:900}
+
+  /* step banner */
+  .step{margin-top:54px;display:flex;align-items:center;gap:32px;background:var(--grad-soft);border-radius:30px;padding:42px 54px}
+  .step .lab{font-family:"Inter";font-weight:800;letter-spacing:.12em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:38px;font-weight:800;line-height:1.4}
+
+  /* closing */
+  .close{justify-content:center}
+  .close .lead-quote{font-size:38px;font-weight:500;color:var(--sub);line-height:1.6;max-width:1420px}
+  .close h1{margin-top:40px;font-size:104px;font-weight:900;line-height:1.16}
+  .close .sign{margin-top:56px;font-size:30px;font-weight:700}
+  .close .sign span{color:var(--faint);font-weight:500;margin-right:16px}
+</style>
+</head>
+<body>
+
+<!-- 01 表紙 -->
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="kick">株式会社EMIAS 御中 ｜ 社員総会 オープニングムービー</div>
+  <div class="bar"></div>
+  <h1>その数分で、<br>会場の温度を<span class="hi">変える</span>。</h1>
+  <div class="sub">社員総会 オープニングムービー ｜ <b>企画ご提案</b></div>
+  <div class="by"><span>映gent Ro.man</span>中川 典彌</div>
+  <div class="date">2026.06.23</div>
+</section>
+
+<!-- 02 役割・目的 -->
+<section class="page" data-document-role="page" data-label="役割・目的">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>Why ・ このムービーの役割</div>
+  <h2 class="title">最初の数分で、<br>全員を「<span class="hi">主役</span>」にする。</h2>
+  <p class="lead">社員総会の冒頭で流し、<b>会場の空気と印象を作り上げる</b>ムービー。観た人が「自分は脇役ではなく主役だ」とこの日を自分事に受け取り、<b>士気が上がり、姿勢が正され、没入できる</b>状態をつくります。</p>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">02 / 13</div>
+</section>
+
+<!-- 03 インサイト -->
+<section class="page" data-document-role="page" data-label="インサイト">
+  <div class="eyebrow"><span class="ebar"></span>Insight ・ 私たちが見た本質</div>
+  <h2 class="title">全員が主人公。<br>でも、まだ<span class="hi">気づいていない</span>。</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>「自分の仕事は、誰にも気づかれない」</h3><p>その小さな引っかかりを、多くの人が抱えている。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>でも、ちゃんと意味がある</h3><p>全員が主人公で、一人ひとりがドラマを持っている。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>その実感が、当日の前のめりを生む</h3><p>観る前より数段、意識を上げて総会に臨んでもらう。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">03 / 13</div>
+</section>
+
+<!-- 04 コンセプト -->
+<section class="page" data-document-role="page" data-label="コンセプト">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>Concept ・ 企画の核</div>
+  <h2 class="title">福祉は、<span class="hi">かっこいい</span>。</h2>
+  <p class="lead">寄り添う・人生を支える——それはもちろん大前提。その上で「<b>かっこいいものである</b>」ことを、このムービーで打ち付ける。<b>"福祉のゲームチェンジャー"</b>になるという覚悟と信念が、すこぶるかっこいい映像で伝わること。それを、企画のいちばん真ん中に置きます。</p>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">04 / 13</div>
+</section>
+
+<!-- 05 トーン・世界観 -->
+<section class="page" data-document-role="page" data-label="トーン・世界観">
+  <div class="eyebrow"><span class="ebar"></span>Tone &amp; Mood ・ 映像の世界観</div>
+  <h2 class="title">強く、クール、真剣、熱く。<br>でも、<span class="hi">笑顔</span>。</h2>
+  <p class="lead">よくある「柔らかく温かいだけ」の福祉インタビューにはしない。一般的な福祉のイメージとはかけ離れた、<b>"奇跡を起こす"</b>と感じさせる絵作りで、<b>映画的なタッチ</b>に仕上げます。</p>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>強い</div>
+    <div class="chip"><span class="dot"></span>クール</div>
+    <div class="chip"><span class="dot"></span>真剣</div>
+    <div class="chip"><span class="dot"></span>熱い</div>
+    <div class="chip"><span class="dot"></span>でも、笑顔</div>
+    <div class="chip"><span class="dot"></span>希望にあふれる</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">05 / 13</div>
+</section>
+
+<!-- 06 構成3要素 -->
+<section class="page" data-document-role="page" data-label="構成の3要素">
+  <div class="eyebrow"><span class="ebar"></span>Structure ・ 構成の3要素</div>
+  <h2 class="title">この<span class="hi">3つ</span>で、濃く伝える。</h2>
+  <div class="cards">
+    <div class="card"><div class="cbar"></div><div class="num">01</div><div class="ctag">Interview</div>
+      <h3>リアルな言葉</h3><p>登壇する6名の本音を主軸に。役割の異なる一人ひとりの言葉を、とにかくかっこよく組み立てる。</p></div>
+    <div class="card"><div class="cbar"></div><div class="num">02</div><div class="ctag">B-roll</div>
+      <h3>日常に潜む福祉</h3><p>手元や目元など、被写体を抜いた別カットを挟む。言葉の余白を埋め、メッセージを濃くする。</p></div>
+    <div class="card"><div class="cbar"></div><div class="num">03</div><div class="ctag">Cinematic</div>
+      <h3>映画的タッチ</h3><p>全員が主人公に見える絵作り。今後EMIASが描く福祉映画への伏線にもなる一本に。</p></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">06 / 13</div>
+</section>
+
+<!-- 07 なぜインタビュー -->
+<section class="page" data-document-role="page" data-label="表現の選択">
+  <div class="eyebrow"><span class="ebar"></span>Why Interview ・ 表現の選択</div>
+  <h2 class="title">主軸は、<span class="hi">リアルな言葉</span>。</h2>
+  <div class="cards">
+    <div class="card"><div class="cbar"></div><div class="ctag">A案 ・ 推奨</div>
+      <h3>インタビュー主軸</h3><p>登壇6名の、嘘のない言葉ほど強いものはない。納期にも確実で、当事者の実感をまっすぐ届ける。</p></div>
+    <div class="card"><div class="cbar"></div><div class="ctag">B案 ・ オプション</div>
+      <h3>物語調の対比演出</h3><p>"福祉のない世界"をモノクロで描き対比する案も検討。劇的だが、納期面のリスクがある。</p></div>
+  </div>
+  <p class="lead">ドラマ性は魅力的。ですが、まず確実に刺さる<b>インタビューを軸</b>に据え、必要に応じて対比演出を効かせる——これを推奨します。</p>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">07 / 13</div>
+</section>
+
+<!-- 08 「6」のモチーフ -->
+<section class="page" data-document-role="page" data-label="「6」のモチーフ">
+  <div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>Motif ・ 「6」というシンボル</div>
+  <h2 class="title">登壇する「<span class="hi">6</span>」を、象徴に。</h2>
+  <p class="lead">役職も役割も異なる6名が登壇します。この<b>"6"という数字</b>を、これからのEMIASに継続して絡めていきたい。込める意味は決め打ちにせず、<b>明日、御社と一緒に握りたい</b>——そう考えています。</p>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">08 / 13</div>
+</section>
+
+<!-- 09 その先 -->
+<section class="page" data-document-role="page" data-label="この一本の、その先">
+  <div class="eyebrow"><span class="ebar"></span>Beyond ・ この一本の、その先</div>
+  <h2 class="title">総会の数分が、<br><span class="hi">未来の伏線</span>になる。</h2>
+  <div class="cards">
+    <div class="card"><div class="cbar"></div><div class="ctag">Movie</div>
+      <h3>福祉映画への伏線</h3><p>今後EMIASが描く福祉テーマの映画。その布石となる世界観を、ここから立ち上げる。</p></div>
+    <div class="card"><div class="cbar"></div><div class="ctag">Recruit</div>
+      <h3>採用・発信に展開</h3><p>ダイジェストは短編のエンドロールやリクルート映像にも転用。一度で終わらせない。</p></div>
+    <div class="card"><div class="cbar"></div><div class="ctag">Asset</div>
+      <h3>資産として残す</h3><p>その日限りの演出ではなく、EMIASのブランドに積み上がる映像資産に。</p></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">09 / 13</div>
+</section>
+
+<!-- 10 スケジュール -->
+<section class="page" data-document-role="page" data-label="スケジュール">
+  <div class="eyebrow"><span class="ebar"></span>Schedule ・ 制作スケジュール</div>
+  <h2 class="title"><span class="hi">7/19</span> 上映へ、逆算で。</h2>
+  <div class="tl">
+    <div class="tlrow"><div class="tldate">〜6月下旬</div><span class="tldot"></span><div class="tltext">企画・インタビューの質問設計を確定</div></div>
+    <div class="tlrow"><div class="tldate">7月上旬</div><span class="tldot"></span><div class="tltext">6名インタビュー ＆ Bロールを撮影</div></div>
+    <div class="tlrow"><div class="tldate">7月10日頃</div><span class="tldot"></span><div class="tltext">素材・構成・提案BGMを確定／共有</div></div>
+    <div class="tlrow"><div class="tldate">7月中旬</div><span class="tldot"></span><div class="tltext">編集・仕上げ</div></div>
+    <div class="tlrow"><div class="tldate">7月19日</div><span class="tldot"></span><div class="tltext big">社員総会 当日上映（熊本城ホール・シビックホール）</div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">10 / 13</div>
+</section>
+
+<!-- 11 役割分担 -->
+<section class="page" data-document-role="page" data-label="体制と役割">
+  <div class="eyebrow"><span class="ebar"></span>Roles ・ 体制と役割</div>
+  <h2 class="title">役割を、<span class="hi">明確</span>に。</h2>
+  <div class="cards">
+    <div class="card"><div class="cbar"></div><div class="ctag">映gent Ro.man ・ 中川</div>
+      <h3>OPムービー ＆ BGM</h3><p>企画・撮影・編集を担当。松井さん登壇時など、重要場面のBGMも検討・ご提案し、7/10までに共有します。</p></div>
+    <div class="card"><div class="cbar"></div><div class="ctag">山下さん側</div>
+      <h3>当日演出 ＆ 記録</h3><p>スクリーン演出・当日オペレーション・記録撮影を担当。記録の全素材は中川にも共有、ダイジェストにも活用。</p></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">11 / 13</div>
+</section>
+
+<!-- 12 一緒に決めたいこと -->
+<section class="page" data-document-role="page" data-label="明日、握りたいこと">
+  <div class="eyebrow"><span class="ebar"></span>Next ・ 明日、一緒に握りたいこと</div>
+  <h2 class="title">ここを決めれば、<span class="hi">走り出せる</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>6名インタビューの質問設計</div>
+    <div class="chip"><span class="dot"></span>「6」に込める意味</div>
+    <div class="chip"><span class="dot"></span>当日の参加規模</div>
+    <div class="chip"><span class="dot"></span>OPムービーの予算感</div>
+  </div>
+  <div class="step"><div class="lab">この場で</div><div class="stx">上の4点を握れたら、明日から撮影に向けて全力で動き出します。</div></div>
+  <div class="foot">映gent Ro.man ｜ EMIAS 社員総会 企画提案</div><div class="pg">12 / 13</div>
+</section>
+
+<!-- 13 クロージング -->
+<section class="page cover close" data-document-role="page" data-label="クロージング">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="lead-quote">「お世話をする介護から脱却し、リハビリ専門職の力で、<br>その人らしい本当の自立をデザインする。」</div>
+  <h1>その覚悟を、<span class="hi">かっこよく</span>。</h1>
+  <div class="sign"><span>映gent Ro.man</span>中川 典彌</div>
+  <div class="date">明日を、笑みに。</div>
+</section>
+
+</body>
+</html>
