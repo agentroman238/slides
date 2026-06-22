@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>AIには「身体性」がない。だから俺たちの出番だ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#54606F; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --soft:#EAF7FA;
+    --grad:linear-gradient(120deg,#14B8A6 0%,#0EA5E9 52%,#6366F1 100%);
+    --grad-soft:linear-gradient(120deg,rgba(20,184,166,.14),rgba(99,102,241,.14));
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:120px 156px}
+  .hi{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .blob{position:absolute;border-radius:50%;z-index:0}
+  .b1{width:760px;height:760px;right:-200px;top:-220px;
+      background:radial-gradient(circle at 30% 30%,rgba(14,165,233,.20),rgba(99,102,241,.10) 45%,rgba(255,255,255,0) 70%)}
+  .b2{width:620px;height:620px;left:-200px;bottom:-220px;
+      background:radial-gradient(circle at 60% 40%,rgba(20,184,166,.18),rgba(14,165,233,.08) 50%,rgba(255,255,255,0) 72%)}
+  .page > *{position:relative;z-index:1}
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:700;font-size:24px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--grad)}
+  .title{font-weight:900;line-height:1.18;font-size:84px;letter-spacing:.01em;margin-top:28px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em;z-index:1}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:700;font-size:22px;color:var(--faint);letter-spacing:.06em;z-index:1}
+  .lead{margin-top:38px;font-size:34px;color:var(--sub);font-weight:500;line-height:1.62;max-width:1540px}
+  .lead b{color:var(--ink);font-weight:700}
+
+  .cover .kick{font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:26px;letter-spacing:.12em;color:var(--faint);margin-bottom:36px}
+  .cover .bar{width:150px;height:13px;border-radius:13px;background:var(--grad);margin-bottom:50px}
+  .cover h1{font-size:104px;line-height:1.14;font-weight:900;letter-spacing:.01em}
+  .cover .sub{margin-top:42px;font-size:44px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:92px;font-size:28px;font-weight:700;z-index:1}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+  .cover .date{position:absolute;right:156px;bottom:96px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;font-weight:700;font-size:24px;color:var(--faint);letter-spacing:.04em;z-index:1}
+
+  .points{margin-top:52px;display:flex;flex-direction:column;gap:36px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:70px;border-radius:9px;background:var(--grad)}
+  .pt h3{font-size:46px;font-weight:900;line-height:1.25}
+  .pt p{font-size:29px;color:var(--sub);font-weight:500;margin-top:10px;line-height:1.5}
+
+  .cards{margin-top:56px;display:flex;gap:40px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:50px 44px 46px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--grad)}
+  .card .num{font-family:"Inter";font-weight:800;font-size:70px;line-height:1;margin-bottom:18px;
+             background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+  .card .ctag{font-family:"Inter";font-weight:700;font-size:20px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+  .card h3{font-size:42px;font-weight:900;line-height:1.22}
+  .card p{margin-top:18px;font-size:28px;color:var(--sub);font-weight:500;line-height:1.5}
+
+  .chips{margin-top:50px;display:flex;flex-wrap:wrap;gap:22px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:22px 38px;font-size:33px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--grad);flex:none}
+
+  .step{margin-top:48px;display:flex;align-items:center;gap:32px;background:var(--grad-soft);border-radius:30px;padding:40px 52px}
+  .step .lab{font-family:"Inter";font-weight:800;letter-spacing:.1em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:37px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="kick">映gent Ro.man ｜ 映像クリエイター塾</div>
+  <div class="bar"></div>
+  <h1>AIには「<span class="hi">身体性</span>」が<br>ない。</h1>
+  <div class="sub">だから、<b>俺たちの出番</b>だ。</div>
+  <div class="by"><span>講師</span>中川 典彌</div>
+  <div class="date">塾コンテンツ ・ AIとの向き合い方</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="導入">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>Introduction ・ 導入</div>
+  <h2 class="title">「AIに、<span class="hi">仕事を奪われ</span>そうで怖い」。</h2>
+  <p class="lead">「これからの時代、AIに仕事を取られる人もいれば、生かす人もいる。不安でたまらない。どう向き合えばいいですか」。この相談、めちゃくちゃわかる。でも最初に言っておく——<b>それは、自分で考えろ</b>。極限まで自分の頭で考える力をつける。それだけで、一生の武器になる。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">02 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="結論">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>結論 ・ The Answer</div>
+  <h2 class="title">AIにできないことを、<br><span class="hi">やるしかない</span>。</h2>
+  <p class="lead">仕事を奪う、というより<b>価値が下がる</b>。「AIで似たの作れるじゃん」と思われた瞬間、50万円が5万円になる。じゃあ、どう向き合うか。答えはもう出ています。AIにできないことを、人間がやる。AIは敵じゃない、<b>人間を拡張する機能</b>。ただし、人間らしいことをやる人間だけが、その恩恵を受けられます。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">03 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="全体像">
+  <div class="blob b1"></div>
+  <div class="eyebrow"><span class="ebar"></span>5つの視点 ・ Overview</div>
+  <h2 class="title">怖いのは、<span class="hi">知らない</span>からだ。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>① まず、知る</div>
+    <div class="chip"><span class="dot"></span>② 脅威の正体は"値下がり"</div>
+    <div class="chip"><span class="dot"></span>③ 人間らしさ＝身体性</div>
+    <div class="chip"><span class="dot"></span>④ 何度でも、愛を届ける</div>
+    <div class="chip"><span class="dot"></span>⑤ 物じゃなく、思い出を売る</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">04 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="① 知る">
+  <div class="eyebrow"><span class="ebar"></span>01 ・ Know</div>
+  <h2 class="title">怖いのは、<br>「<span class="hi">知らない</span>」からだ</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>人は、知らないものを怖いと思う</h3><p>恐怖が勝つと、「否定」したくなる。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>だからまず、知る</h3><p>知らないと、向き合い方は一生わからない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>気づきは、AIの中にはない</h3><p>気づきは、人間の中にしかない。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">05 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="② 脅威">
+  <div class="eyebrow"><span class="ebar"></span>02 ・ Threat</div>
+  <h2 class="title">便利。でも、<br>生業には「<span class="hi">脅威</span>」</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>数秒で脚本。一瞬でデザイン</h3><p>自立型エージェントまで、来た。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>奪う、というより価値が下がる</h3><p>50万円の仕事が、5万円に。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>依頼主が、人の力を安く見てしまう</h3><p>だからこそ、向き合い方がいる。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">06 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="③ 身体性">
+  <div class="eyebrow"><span class="ebar"></span>03 ・ The Body</div>
+  <h2 class="title">人間らしさとは、<br>「<span class="hi">身体性</span>」だ</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>AIには、身体も五感もない</h3><p>「感動」を、本当のところはわからない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>聞いてみて。「1日だけ人間になれたら?」</h3><p>「大好きな人と、手をつなぎたい」。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>それ全部、AIにできないこと</h3><p>そして、人間が一番求めていること。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">07 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="④ 愛">
+  <div class="eyebrow"><span class="ebar"></span>04 ・ Love</div>
+  <h2 class="title">何度でも、<br>「<span class="hi">愛</span>」を届けられる</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>映る人からは、撮る僕たちが見えている</h3><p>感動する姿が、記憶に焼き付く。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>「社長への思い、ありますか?」</h3><p>普段は言えないことを、聞けるきっかけ。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>企画でも撮影でも、出来た瞬間でも</h3><p>誰かと誰かの絆を、何度でも深める。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">08 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="⑤ 思い出">
+  <div class="eyebrow"><span class="ebar"></span>05 ・ Memory</div>
+  <h2 class="title">物じゃなく、<br>「<span class="hi">思い出</span>」を売る</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>絵を、ネットで売るんじゃない</h3><p>思いを語って、買ってもらう。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>買っているのは、その人との思い出</h3><p>玄関に飾るたび、記憶が蘇る。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>「この人と一緒にいたい」と思われたら</h3><p>仕事は、永遠にある。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">09 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="まとめ">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="eyebrow"><span class="ebar"></span>まとめ ・ Wrap Up</div>
+  <h2 class="title">怖がらなくて、<span class="hi">いい</span>。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>怖いのは知らないから。まず知る</div>
+    <div class="chip"><span class="dot"></span>AIにできないことをやる</div>
+    <div class="chip"><span class="dot"></span>人間らしさ＝身体性</div>
+    <div class="chip"><span class="dot"></span>物じゃなく、思い出を売る</div>
+  </div>
+  <div class="step"><div class="lab">今日の一歩</div><div class="stx">自分のサービスは、誰の何の役に立つのか。身体性を持って届けられるものは何か。そこを突き詰めれば、AIは人と向き合う時間を増やしてくれる。</div></div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">10 / 10</div>
+</section>
+
+</body>
+</html>
