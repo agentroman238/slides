@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>単価は、「価値の証明」で上げる。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1322; --sub:#5B6677; --faint:#93A1B0; --line:#E7ECF2; --card:#F6F9FC;
+    --hi:#0EA5B7; /* solid accent so highlighted words stay editable text in Canva */
+    --soft:#EAF7FA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--ink);background:#fff}
+  .page{position:relative;width:1920px;height:1080px;background:#fff;overflow:hidden;
+        display:flex;flex-direction:column;justify-content:center;padding:126px 156px}
+  .eyebrow{display:flex;align-items:center;gap:21px;font-family:"Inter","Zen Kaku Gothic New",sans-serif;
+           font-weight:600;font-size:24px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .ebar{width:51px;height:6px;border-radius:6px;background:var(--hi)}
+  .hi{color:var(--hi)}
+  .title{font-weight:900;line-height:1.18;font-size:90px;letter-spacing:.01em;margin-top:30px}
+  .foot{position:absolute;left:156px;bottom:58px;font-size:21px;color:var(--faint);letter-spacing:.03em}
+  .pg{position:absolute;right:80px;bottom:56px;font-family:"Inter";font-weight:600;font-size:22px;color:var(--faint);letter-spacing:.06em}
+
+  /* cover */
+  .cover .kick{font-family:"Inter";font-weight:600;font-size:25px;letter-spacing:.16em;color:var(--faint);margin-bottom:40px}
+  .cover .bar{width:140px;height:12px;border-radius:12px;background:var(--hi);margin-bottom:54px}
+  .cover h1{font-size:116px;line-height:1.16;font-weight:900}
+  .cover .sub{margin-top:44px;font-size:40px;font-weight:700;color:var(--sub)}
+  .cover .sub b{color:var(--ink)}
+  .cover .by{position:absolute;left:156px;bottom:96px;font-size:27px;font-weight:700}
+  .cover .by span{color:var(--faint);font-weight:500;margin-right:16px}
+
+  /* statement */
+  .lead{margin-top:46px;font-size:36px;color:var(--sub);font-weight:500;line-height:1.6;max-width:1500px}
+
+  /* points list */
+  .points{margin-top:64px;display:flex;flex-direction:column;gap:42px}
+  .pt{display:flex;align-items:flex-start;gap:36px}
+  .pt .pbar{width:9px;align-self:stretch;min-height:78px;border-radius:9px;background:var(--hi)}
+  .pt h3{font-size:50px;font-weight:900;line-height:1.25}
+  .pt p{font-size:31px;color:var(--sub);font-weight:500;margin-top:12px;line-height:1.5}
+
+  /* cards */
+  .cards{margin-top:64px;display:flex;gap:46px}
+  .card{flex:1;background:var(--card);border:1px solid var(--line);border-radius:34px;padding:58px 58px 50px;position:relative;overflow:hidden}
+  .cbar{position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--hi)}
+  .card .num{font-family:"Inter";font-weight:700;font-size:80px;line-height:1;color:var(--hi);margin-bottom:22px}
+  .card h3{font-size:50px;font-weight:900;line-height:1.2;white-space:nowrap}
+  .card p{margin-top:20px;font-size:30px;color:var(--sub);font-weight:500;line-height:1.5}
+  .answer-foot{margin-top:56px;font-size:38px;font-weight:700}
+
+  /* chips & step */
+  .chips{margin-top:60px;display:flex;flex-wrap:wrap;gap:24px}
+  .chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:24px 40px;font-size:34px;font-weight:700;display:flex;align-items:center;gap:18px}
+  .dot{width:18px;height:18px;border-radius:50%;background:var(--hi)}
+  .step{margin-top:58px;display:flex;align-items:center;gap:32px;background:var(--soft);border-radius:30px;padding:44px 54px}
+  .step .lab{font-family:"Inter";font-weight:700;letter-spacing:.12em;font-size:22px;color:#0E7C8C;text-transform:uppercase;white-space:nowrap}
+  .step .stx{font-size:40px;font-weight:800;line-height:1.4}
+</style>
+</head>
+<body>
+
+<section class="page cover" data-document-role="page" data-label="表紙">
+  <div class="kick">映gent Ro.man ｜ 映像クリエイター塾</div>
+  <div class="bar"></div>
+  <h1>単価は、<br>「<span class="hi">価値の証明</span>」で上げる。</h1>
+  <div class="sub">上げられないんじゃない、<b>上げたくない</b>だけ。</div>
+  <div class="by"><span>講師</span>中川 典彌</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="導入">
+  <div class="eyebrow"><span class="ebar"></span>Introduction</div>
+  <h2 class="title">単価が低い理由は、<br>まず「<span class="hi">実力</span>」。</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>「どう上げれば?」最多の相談</div>
+    <div class="chip"><span class="dot"></span>まず一番厳しい話＝実力</div>
+    <div class="chip"><span class="dot"></span>その先の「上げ方」はロジック</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">02 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="結論">
+  <div class="eyebrow"><span class="ebar"></span>結論 ・ The Answer</div>
+  <h2 class="title">「上げられない」んじゃない。<br>「<span class="hi">上げたくない</span>」だけ。</h2>
+  <p class="lead">「こんな僕が、もらっていいのか」。<br>その瞬間、自分で見積もりにブレーキをかけている。原因は実力以前に、価値を認められないマインド。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">03 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="全体像">
+  <div class="eyebrow"><span class="ebar"></span>価値の証明 ・ The Method</div>
+  <h2 class="title">「<span class="hi">価値の証明</span>」を、順番に。</h2>
+  <p class="lead">マインドは根性じゃなく、事実で変える。やることは、この5つ。</p>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>① 渾身の一本</div>
+    <div class="chip"><span class="dot"></span>② 効果検証できる関係</div>
+    <div class="chip"><span class="dot"></span>③ 価値を算出する</div>
+    <div class="chip"><span class="dot"></span>④ 実績として見せる</div>
+    <div class="chip"><span class="dot"></span>⑤ 見積もりは詳細に</div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">04 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="① 渾身の一本">
+  <div class="eyebrow"><span class="ebar"></span>01 ・ Signature Work</div>
+  <h2 class="title">課題を解決する「<span class="hi">渾身の一本</span>」</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>事実で、マインドを変える</h3><p>根性論じゃ、ブレーキは外れない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>相手の課題を、本当に解決する</h3><p>心を震わせ、行動を起こさせる一本。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>価値の証明は、ここから</h3><p>これが、単価を上げる絶対条件。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">05 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="② 効果検証の関係">
+  <div class="eyebrow"><span class="ebar"></span>02 ・ Feedback Loop</div>
+  <h2 class="title">「<span class="hi">効果検証</span>」できる関係を、先に</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>納品して終わり、にしない</h3><p>みんな驚くほど、やっていない。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>「どうでした?」と聞ける関係</h3><p>「決まったら教えて」と一言添える。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>「あれで一人入ったよ」</h3><p>この一言が、次のすべてを変える。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">06 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="③ 価値を算出">
+  <div class="eyebrow"><span class="ebar"></span>03 ・ Calculate</div>
+  <h2 class="title">価値を「<span class="hi">算出</span>」する</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>採用コストを、調べる</h3><p>一人採るのにいくら? 仮に100万。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>映像は、使い捨てじゃない</h3><p>一度作れば、永遠に流せる資産。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>根拠を持って、50万</h3><p>「軽くその価値はある」と言える。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">07 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="④ 実績で見せる">
+  <div class="eyebrow"><span class="ebar"></span>04 ・ Proof</div>
+  <h2 class="title">「<span class="hi">実績</span>」として、次に見せる</h2>
+  <p class="lead">「この映像で、採用が決まったそうです」。<br>嘘のない実績の前では、フリーランス数日目か十年目かは関係ない。「効果を出せる人」として見られる。</p>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">08 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="⑤ 見積もりは詳細に">
+  <div class="eyebrow"><span class="ebar"></span>05 ・ The Estimate</div>
+  <h2 class="title">見積もりは、徹底的に「<span class="hi">詳細</span>」に</h2>
+  <div class="points">
+    <div class="pt"><div class="pbar"></div><div><h3>「一式」が、一番もったいない</h3><p>工程ごとに、分解して書く。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>企画・監督・撮影・編集…</h3><p>音楽・交通・PM・場所代まで。</p></div></div>
+    <div class="pt"><div class="pbar"></div><div><h3>機材費は、堂々と＝原価</h3><p>高い機材を、数年かけてペイする原価。</p></div></div>
+  </div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">09 / 10</div>
+</section>
+
+<section class="page" data-document-role="page" data-label="まとめ">
+  <div class="eyebrow"><span class="ebar"></span>まとめ ・ Wrap Up</div>
+  <h2 class="title">単価＝「<span class="hi">価値</span>」を数字にしたもの</h2>
+  <div class="chips">
+    <div class="chip"><span class="dot"></span>ブレーキは、自分のマインド</div>
+    <div class="chip"><span class="dot"></span>映像は資産。価値は算出できる</div>
+    <div class="chip"><span class="dot"></span>証明できれば、単価は後から</div>
+  </div>
+  <div class="step"><div class="lab">今日の一歩</div><div class="stx">直近の納品先へ、今日一通。「その後、いかがですか?」と送る。</div></div>
+  <div class="foot">映gent Ro.man ｜ 塾コンテンツ</div><div class="pg">10 / 10</div>
+</section>
+
+</body>
+</html>
